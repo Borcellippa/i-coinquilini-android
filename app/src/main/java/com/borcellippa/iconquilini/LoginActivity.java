@@ -14,6 +14,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.borcellippa.resources.utente.Utente;
+import com.borcellippa.utility.Utility;
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -124,7 +127,7 @@ public class LoginActivity extends Activity {
         AsyncHttpClient client = new AsyncHttpClient();
         Log.d(TAG,"invokeWS");
         //client.get("http://"+ ip + ":8080/I_coinquilini-war/webresources/Utente/testGet",params ,new AsyncHttpResponseHandler() {
-        client.post("http://"+ ip + ":8080/I_coinquilini-war/webresources/Utente/testParam",params ,new AsyncHttpResponseHandler() {
+        client.post("http://"+ ip + ":8080/I_coinquilini-war/webresources/Utente/validaLogin",params ,new AsyncHttpResponseHandler() {
 
                 // When the response returned by REST has Http response code '200'
 
@@ -139,27 +142,34 @@ public class LoginActivity extends Activity {
                     e.printStackTrace();
                 }
 
-                System.out.println("CONINQUILINI_RESPONSE: " + response);
+                System.out.println("COINQUILINI_RESPONSE: " + response);
                 // Hide Progress Dialog
                 prgDialog.hide();
                 try {
 
-                    // JSON Object
-                    JSONObject obj = new JSONObject(response);
-                    // When the JSON response has status boolean value assigned with true
-                    if(obj.getBoolean("status")){
+
+                    // errore da qua in giù....
+
+                    Gson g = new Gson();
+                    Utente u = g.fromJson(response, Utente.class);
+
+                    System.out.println("UTENTE: " + u.getCognome());
+                    Log.d(TAG, u.getCognome());
+
+
+                    if(u != null) {
                         Toast.makeText(getApplicationContext(), "You are successfully logged in!", Toast.LENGTH_LONG).show();
                         // Navigate to Home screen
                         navigatetoHomeActivity();
                     }
                     // Else display error message
                     else{
-                        errorMsg.setText(obj.getString("error_msg"));
-                        Toast.makeText(getApplicationContext(), obj.getString("error_msg"), Toast.LENGTH_LONG).show();
+                        errorMsg.setText("Credenziali errate");
+                        Toast.makeText(getApplicationContext(), "Credenziali errate", Toast.LENGTH_LONG).show();
                     }
-                } catch (JSONException e) {
+                } catch (Exception e) {
                     // TODO Auto-generated catch block
-                    Toast.makeText(getApplicationContext(), "Error Occured [Server's JSON response might be invalid]!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Errore login", Toast.LENGTH_LONG).show();
                     e.printStackTrace();
 
                 }
@@ -168,7 +178,7 @@ public class LoginActivity extends Activity {
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] bytes, Throwable throwable) {
 
-                Log.d(TAG,"onFailureB");
+                Log.d(TAG,"onFailure");
 
                 // Hide Progress Dialog
                 prgDialog.hide();

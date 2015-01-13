@@ -1,4 +1,4 @@
-package com.borcellippa.iconquilini;
+package com.borcellippa.utility;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,4 +35,8 @@ public class Utility {
     public static boolean isNotNull(String txt){
         return txt!=null && txt.trim().length()>0 ? true: false;
     }
+
+
+
+
 }
