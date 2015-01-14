@@ -14,9 +14,6 @@ public class HomeErrorActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_error);
-
-        TextView foo = (TextView)findViewById(R.id.homeErrorMessage);
-        foo.setText(Html.fromHtml(getString(R.string.homeErrorMessage)));
     }
 
 
