@@ -181,7 +181,6 @@ public class Welcome extends Activity {
         Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
         homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         homeIntent.putExtra("utente", u);
-        System.out.println(u);
         startActivity(homeIntent);
     }
 }

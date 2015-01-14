@@ -251,15 +251,4 @@ public class LoginActivity extends Activity {
         startActivity(homeIntent);
     }
 
-    /**
-     * Method gets triggered when Register button is clicked
-     *
-     * @param view
-     */
-/*    public void navigatetoRegisterActivity(View view){
-        Intent loginIntent = new Intent(getApplicationContext(),RegisterActivity.class);
-        loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(loginIntent);
-    }
-*/
 }
