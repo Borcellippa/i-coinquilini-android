@@ -17,7 +17,7 @@
             android:textSize="25sp"
             android:textStyle="bold" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/loginEmail"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
             android:layout_marginTop="15dip"
             android:text="@string/ip" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/loginIp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

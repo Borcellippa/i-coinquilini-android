@@ -9,6 +9,7 @@ tools:context="com.borcellippa.iconquilini.HomeActivity"
 tools:ignore="MergeRootFrame" >
 
 <TextView
+    android:id="@+id/testoProva"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_gravity="fill_vertical"
