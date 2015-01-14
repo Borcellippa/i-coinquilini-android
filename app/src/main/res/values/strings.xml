@@ -14,5 +14,8 @@
     <string name="title_activity_home_error">HomeErrorActivity</string>
     <string name="homeErrorMessage1">Nessuna casa associata all\'utente!</string>
     <string name="homeErrorMessage2">Utilizza l\'applicazione desktop per cercare o creare una casa!</string>
+    <string name="title_activity_welcome">Welcome</string>
+    <string name="benvenuto">Benvenuto</string>
+    <string name="meteoText">Il meteo sopra casa tua è:</string>
 
 </resources>

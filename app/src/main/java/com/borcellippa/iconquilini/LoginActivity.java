@@ -54,7 +54,7 @@ public class LoginActivity extends Activity {
 
     // autocompletamento indiritto ip
     private static final String[] IP = new String[]{
-            "10.17.2.242", "10.17.2.254", "172.16.44.186", "192.168.43.186"
+            "10.17.2.242", "10.17.2.254", "172.16.44.186", "192.168.43.186",
     };
 
 
@@ -190,7 +190,7 @@ public class LoginActivity extends Activity {
                         Toast.makeText(getApplicationContext(), "You are successfully logged in!", Toast.LENGTH_LONG).show();
                         // Navigate to Home screen
                         if (u.getCasa() != null) {
-                            navigatetoHomeActivity(u);
+                            navigatetoWelcomeActivity(u);
                         } else {
                             navigatetoHomeErrorActivity(u);
                         }
@@ -241,8 +241,8 @@ public class LoginActivity extends Activity {
     /**
      * Method which navigates from Login Activity to Home Activity
      */
-    public void navigatetoHomeActivity(Utente utente) {
-        Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
+    public void navigatetoWelcomeActivity(Utente utente) {
+        Intent homeIntent = new Intent(getApplicationContext(), Welcome.class);
         homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         homeIntent.putExtra("utente", utente);
