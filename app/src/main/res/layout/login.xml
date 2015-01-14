@@ -20,7 +20,10 @@
         android:layout_height="wrap_content"
         android:hint="Enter your Email ID"
         android:inputType="textEmailAddress"
-        android:textColorHint="@color/text_secondary" />
+        android:textColor="@color/text_secondary"
+        android:textColorHint="@color/text_tertiary"
+        android:popupBackground="@color/white"
+    />
 
     <TextView
         android:layout_width="fill_parent"
@@ -34,7 +37,8 @@
         android:layout_height="wrap_content"
         android:hint="Enter Password"
         android:inputType="textPassword"
-        android:textColorHint="@color/text_secondary" />
+        android:textColor="@color/text_secondary"
+        android:textColorHint="@color/text_tertiary" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -48,7 +52,10 @@
         android:layout_height="wrap_content"
         android:hint="Enter IP"
         android:inputType="text"
-        android:textColorHint="@color/text_secondary" />
+        android:textColor="@color/text_secondary"
+        android:textColorHint="@color/text_tertiary"
+        android:popupBackground="@color/white"
+        />
 
     <TextView
         android:id="@+id/login_error"
@@ -56,11 +63,7 @@
         android:layout_height="wrap_content"
         android:padding="10dip"
         android:textColor="#e30000"
-        android:textStyle="bold"/>
-
-
-
-
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnLogin"

@@ -1,11 +1,11 @@
 <resources>
     <color name="primary">#ff5f9ea0</color>
     <color name="primary_dark">#ff528d8f</color>
-    <color name="accent">#ffc400</color>
     <color name="text_primary">#D9FFFFFF</color>
     <color name="text_secondary">#D9000000</color>
+    <color name="text_tertiary">#d9919191</color>
 
-    <color name="white">#D9FFFFFF</color>
+    <color name="white">#e1ffffff</color>
 
 
 
