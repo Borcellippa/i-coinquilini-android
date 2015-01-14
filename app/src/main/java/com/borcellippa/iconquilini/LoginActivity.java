@@ -49,12 +49,12 @@ public class LoginActivity extends Activity {
 
     // autocompletamento email
     private static final String[] EMAIL = new String[]{
-            "mober@hotmail.it", "mattiasappa@gmail.com", "ciccicicci99@libero.it", "prova@hotmail.it"
+            "mober@hotmail.it", "mattiasappa@gmail.com", "ciccicicci99@libero.it", "prova@hotmail.it", "p.g@h.it"
     };
 
     // autocompletamento indiritto ip
     private static final String[] IP = new String[]{
-            "10.17.2.242", "10.17.2.254", "172.16.44.186", "192.168.43.186",
+            "10.17.2.242", "10.17.2.254", "172.16.44.186", "192.168.43.186"
     };
 
 
@@ -190,8 +190,10 @@ public class LoginActivity extends Activity {
                         Toast.makeText(getApplicationContext(), "You are successfully logged in!", Toast.LENGTH_LONG).show();
                         // Navigate to Home screen
                         if (u.getCasa() != null) {
+                            System.out.println("LOGIN OK");
                             navigatetoWelcomeActivity(u);
                         } else {
+                            System.out.println("LOGIN KO");
                             navigatetoHomeErrorActivity(u);
                         }
                     }
@@ -225,6 +227,7 @@ public class LoginActivity extends Activity {
                 }
                 // When Http response code other than 404, 500
                 else {
+                    System.out.println("CODE: "+statusCode);
                     Toast.makeText(getApplicationContext(), "Unexpected Error occcured! [Most common Error: Device might not be connected to Internet or remote server is not up and running]", Toast.LENGTH_LONG).show();
                 }
             }
@@ -244,9 +247,7 @@ public class LoginActivity extends Activity {
     public void navigatetoWelcomeActivity(Utente utente) {
         Intent homeIntent = new Intent(getApplicationContext(), Welcome.class);
         homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
         homeIntent.putExtra("utente", utente);
-
         startActivity(homeIntent);
     }
 

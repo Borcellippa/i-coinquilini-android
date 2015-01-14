@@ -1,5 +1,7 @@
 package com.borcellippa.iconquilini;
 
+import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -21,9 +23,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 
 
-public class Welcome extends ActionBarActivity {
+public class Welcome extends Activity {
 
     private String TAG = "Welcome";
 
@@ -31,6 +34,8 @@ public class Welcome extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
+        System.out.println("IN WELCOME");
 
         Utente u = (Utente)getIntent().getSerializableExtra("utente");
 
@@ -57,24 +62,86 @@ public class Welcome extends ActionBarActivity {
                     e.printStackTrace();
                 }
 
-                System.out.println("WELCOME_RESPONSE: " + response);
+                JSONObject obj;
 
                 try {
-                    JSONObject obj = new JSONObject(response);
-                    if (!obj.getString("cod").equals("404")) {
+                    obj = new JSONObject(response);
+                    System.out.println("CODE: " + obj.getString("cod"));
+                    if (obj.getString("cod").equals("404")) {
                         Toast.makeText(getApplicationContext(), "Errore nel download del meteo!", Toast.LENGTH_LONG).show();
                     }
                     else {
+                        obj = new JSONObject(response);
+                        System.out.println("CODE: " + obj.getString("cod"));
                         JSONArray array = obj.getJSONArray("weather");
                         String tempString = array.getString(0);
                         JSONObject tempObj = new JSONObject(tempString);
 
                         //immagine
+
                         ImageView meteo = (ImageView)findViewById(R.id.immagineMeteo);
-                        meteo.setImageURI(Uri.parse("http://openweathermap.org/img/w/"+tempObj.getString("icon")));
+                        String imageName = tempObj.getString("icon");
+                        switch(imageName) {
+                            case "01d":
+                                meteo.setImageResource(R.drawable.m01d);
+                                break;
+                            case "01n":
+                                meteo.setImageResource(R.drawable.m01n);
+                                break;
+                            case "02d":
+                                meteo.setImageResource(R.drawable.m02d);
+                                break;
+                            case "02n":
+                                meteo.setImageResource(R.drawable.m02n);
+                                break;
+                            case "03d":
+                                meteo.setImageResource(R.drawable.m03d);
+                                break;
+                            case "03n":
+                                meteo.setImageResource(R.drawable.m03n);
+                                break;
+                            case "04d":
+                                meteo.setImageResource(R.drawable.m04d);
+                                break;
+                            case "04n":
+                                meteo.setImageResource(R.drawable.m04n);
+                                break;
+                            case "09d":
+                                meteo.setImageResource(R.drawable.m09d);
+                                break;
+                            case "09n":
+                                meteo.setImageResource(R.drawable.m09n);
+                                break;
+                            case "10d":
+                                meteo.setImageResource(R.drawable.m10d);
+                                break;
+                            case "10n":
+                                meteo.setImageResource(R.drawable.m10n);
+                                break;
+                            case "11d":
+                                meteo.setImageResource(R.drawable.m11d);
+                                break;
+                            case "11n":
+                                meteo.setImageResource(R.drawable.m11n);
+                                break;
+                            case "13d":
+                                meteo.setImageResource(R.drawable.m13d);
+                                break;
+                            case "13n":
+                                meteo.setImageResource(R.drawable.m13n);
+                                break;
+                            case "50d":
+                                meteo.setImageResource(R.drawable.m50d);
+                                break;
+                            case "50n":
+                                meteo.setImageResource(R.drawable.m50n);
+                                break;
+                        }
+
+
 
                         // testo
-                        TextView textview = (TextView)findViewById(R.id.benvenuto);
+                        TextView textview = (TextView)findViewById(R.id.meteoTextView);
                         textview.setText(tempObj.getString("description"));
                     }
                 } catch (Exception e) {
