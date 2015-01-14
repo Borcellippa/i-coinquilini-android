@@ -47,7 +47,7 @@ public class LoginActivity extends Activity {
 
     // autocompletamento email
     private static final String[] EMAIL = new String[]{
-            "mober@hotmail.it", "mattiasappa@gmail.com", "ciccicicci99@libero.it"
+            "mober@hotmail.it", "mattiasappa@gmail.com", "ciccicicci99@libero.it", "prova@hotmail.it"
     };
 
     // autocompletamento indiritto ip
@@ -226,7 +226,9 @@ public class LoginActivity extends Activity {
 
 
     private void navigatetoHomeErrorActivity(Utente utente) {
-
+        Intent homeIntent = new Intent(getApplicationContext(), HomeErrorActivity.class);
+        homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(homeIntent);
     }
 
     /**
