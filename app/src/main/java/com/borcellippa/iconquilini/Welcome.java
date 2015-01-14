@@ -1,6 +1,7 @@
 package com.borcellippa.iconquilini;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +32,8 @@ public class Welcome extends Activity {
 
     private String TAG = "Welcome";
 
+    Utente u;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,10 +41,10 @@ public class Welcome extends Activity {
 
         System.out.println("IN WELCOME");
 
-        Utente u = (Utente)getIntent().getSerializableExtra("utente");
+        u = (Utente) getIntent().getSerializableExtra("utente");
 
-        TextView benvenuto = (TextView)findViewById(R.id.benvenuto);
-        benvenuto.setText(benvenuto.getText()+" "+u.getNome());
+        TextView benvenuto = (TextView) findViewById(R.id.benvenuto);
+        benvenuto.setText(benvenuto.getText() + " " + u.getNome());
 
         AsyncHttpClient client = new AsyncHttpClient();
         Log.d(TAG, "invokeWS");
@@ -69,8 +73,7 @@ public class Welcome extends Activity {
                     System.out.println("CODE: " + obj.getString("cod"));
                     if (obj.getString("cod").equals("404")) {
                         Toast.makeText(getApplicationContext(), "Errore nel download del meteo!", Toast.LENGTH_LONG).show();
-                    }
-                    else {
+                    } else {
                         obj = new JSONObject(response);
                         System.out.println("CODE: " + obj.getString("cod"));
                         JSONArray array = obj.getJSONArray("weather");
@@ -79,9 +82,9 @@ public class Welcome extends Activity {
 
                         //immagine
 
-                        ImageView meteo = (ImageView)findViewById(R.id.immagineMeteo);
+                        ImageView meteo = (ImageView) findViewById(R.id.immagineMeteo);
                         String imageName = tempObj.getString("icon");
-                        switch(imageName) {
+                        switch (imageName) {
                             case "01d":
                                 meteo.setImageResource(R.drawable.m01d);
                                 break;
@@ -138,10 +141,8 @@ public class Welcome extends Activity {
                                 break;
                         }
 
-
-
                         // testo
-                        TextView textview = (TextView)findViewById(R.id.meteoTextView);
+                        TextView textview = (TextView) findViewById(R.id.meteoTextView);
                         textview.setText(tempObj.getString("description"));
                     }
                 } catch (Exception e) {
@@ -174,25 +175,13 @@ public class Welcome extends Activity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_welcome, menu);
-        return true;
-    }
+    public void navigatetoHomeActivity(View view) {
+        Log.d(TAG, "navigatetoHomeActivity");
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
+        homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        homeIntent.putExtra("utente", u);
+        System.out.println(u);
+        startActivity(homeIntent);
     }
 }

@@ -29,13 +29,13 @@ public class PostAdapter  extends ArrayAdapter<Post> {
         TextView autore = (TextView)convertView.findViewById(R.id.textViewAutore);
         TextView contenuto = (TextView)convertView.findViewById(R.id.textViewContenuto);
         TextView data = (TextView)convertView.findViewById(R.id.textViewDataPubblicazione);
-        ImageView imageView = (ImageView)convertView.findViewById(R.id.userImage);
+//        ImageView imageView = (ImageView)convertView.findViewById(R.id.userImage);
 
         Post p = getItem(position);
         autore.setText(p.getAutore());
         contenuto.setText(p.getContenuto());
         data.setText(p.getDataPubblicazione().toString());
-        imageLoader.displayImage(p.getAutore_img(), imageView);
+       // imageLoader.displayImage(p.getAutore_img(), imageView);
 
 
         return convertView;

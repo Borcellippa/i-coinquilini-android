@@ -54,7 +54,7 @@ public class LoginActivity extends Activity {
 
     // autocompletamento indiritto ip
     private static final String[] IP = new String[]{
-            "10.17.2.242", "10.17.2.254", "172.16.44.186", "192.168.43.186"
+            "10.17.2.242", "10.17.2.254", "172.16.44.186", "192.168.43.186", "192.168.1.136"
     };
 
 

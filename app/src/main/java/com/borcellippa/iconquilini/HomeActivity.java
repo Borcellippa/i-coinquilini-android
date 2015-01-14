@@ -6,6 +6,7 @@ package com.borcellippa.iconquilini;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,6 +24,9 @@ import java.util.List;
  */
 public class HomeActivity extends Activity {
 
+    private String TAG = "Home_Coinquilini";
+
+
     Utente u;
     TextView nomeCasa;
 
@@ -35,8 +39,8 @@ public class HomeActivity extends Activity {
 
 
         u = (Utente) getIntent().getSerializableExtra("utente"); // accedo all'utente ottenuto nella activity precedente
-
-
+        Log.d(TAG, "onCreate");
+        System.out.println(u);
         showHome();
     }
 
