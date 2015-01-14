@@ -16,9 +16,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.borcellippa.resources.casa.casa.Casa;
 import com.borcellippa.resources.utente.Utente;
 import com.borcellippa.utility.Utility;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -52,14 +54,14 @@ public class LoginActivity extends Activity {
 
     // autocompletamento indiritto ip
     private static final String[] IP = new String[]{
-            "10.17.2.242", "10.17.2.254"
+            "10.17.2.242", "10.17.2.254", "172.16.44.186", "192.168.43.186"
     };
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-    // In the onCreate method
+        // In the onCreate method
         Log.d(TAG, "Application Start");
 
         super.onCreate(savedInstanceState);
@@ -167,11 +169,16 @@ public class LoginActivity extends Activity {
                 // Hide Progress Dialog
                 prgDialog.hide();
                 try {
-                    Gson g = new Gson();
+                    Gson g = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS").create();
+
                     Utente u = g.fromJson(response, Utente.class);
 
                     System.out.println("UTENTE: " + u.getCognome());
                     Log.d(TAG, u.getCognome());
+
+                    Casa c = u.getCasa();
+
+                    Log.d(TAG, c.getNomeCasa());
 
                     /*
                     *   Gestire errore login

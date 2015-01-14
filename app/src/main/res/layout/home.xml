@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/container"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context="com.borcellippa.iconquilini.HomeActivity"
-tools:ignore="MergeRootFrame" >
-
-<TextView
-    android:id="@+id/testoProva"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:layout_gravity="fill_vertical"
-    android:layout_marginTop="20pt"
-    android:gravity="center_horizontal"
-    android:text="Welcome User"
-    android:textSize="25dip" />
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dip">
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/nomeCasa"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dip"
+        android:text="nomeCasa"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/listPost"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+    </ListView>
+
+</LinearLayout>
+

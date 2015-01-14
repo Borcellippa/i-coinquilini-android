@@ -5,8 +5,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
-    <string name="title_activity_login">Login</string>
-    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_login">I Coinquilini</string>
+    <string name="title_activity_home">I Coinquilini</string>
     <string name="login_title">Login</string>
     <string name="name">Name</string>
     <string name="email">Email</string>

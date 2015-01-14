@@ -20,6 +20,7 @@ public class Post implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long id;
     private String contenuto;
+
     private Date dataPubblicazione;
     private Media media;
     private String autore;
