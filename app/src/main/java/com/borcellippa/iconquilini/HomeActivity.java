@@ -33,6 +33,8 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import org.apache.http.Header;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -163,6 +165,7 @@ public class HomeActivity extends Activity {
         Casa c = u.getCasa();
         Bacheca b = c.getBacheca();
         List<Post> postList = b.getPosts();
+        Collections.reverse(postList);
 
         // elenco post
         ListView listView = (ListView) findViewById(R.id.listPost);

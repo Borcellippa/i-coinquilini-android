@@ -35,7 +35,7 @@ public class PostAdapter  extends ArrayAdapter<Post> {
         Post p = getItem(position);
         autore.setText(p.getAutore());
         contenuto.setText(p.getContenuto());
-        data.setText(p.getDataPubblicazione().toString());
+        data.setText(p.getDataPubblicazione());
         String url = p.getAutore_img();
         if (url != "images/user.png") {
             ImageLoader imageLoader = ImageLoader.getInstance();
