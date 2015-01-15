@@ -18,10 +18,7 @@ import com.borcellippa.resources.casa.bacheca.post.Post;
 import com.borcellippa.resources.casa.casa.Casa;
 import com.borcellippa.resources.utente.Utente;
 import com.borcellippa.utility.PostAdapter;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -42,9 +39,6 @@ public class HomeActivity extends Activity {
         //Displays Home Screen
         setContentView(R.layout.home);
 
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
-        ImageLoader.getInstance().init(config);
-
 
         u = (Utente) getIntent().getSerializableExtra("utente"); // accedo all'utente ottenuto nella activity precedente
         Log.d(TAG, "onCreate");
@@ -61,9 +55,6 @@ public class HomeActivity extends Activity {
         Casa c = u.getCasa();
         Bacheca b = c.getBacheca();
         List<Post> postList = b.getPosts();
-
-        Collections.reverse(postList);
-
 
         // elenco post
         ListView listView = (ListView) findViewById(R.id.listPost);
