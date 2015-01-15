@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.borcellippa.iconquilini.R;
 import com.borcellippa.resources.casa.bacheca.post.Post;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
 
@@ -26,16 +27,21 @@ public class PostAdapter  extends ArrayAdapter<Post> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = inflater.inflate(R.layout.rowpost, null);
-        TextView autore = (TextView)convertView.findViewById(R.id.textViewAutore);
-        TextView contenuto = (TextView)convertView.findViewById(R.id.textViewContenuto);
-        TextView data = (TextView)convertView.findViewById(R.id.textViewDataPubblicazione);
-//        ImageView imageView = (ImageView)convertView.findViewById(R.id.userImage);
+        TextView autore = (TextView) convertView.findViewById(R.id.textViewAutore);
+        TextView contenuto = (TextView) convertView.findViewById(R.id.textViewContenuto);
+        TextView data = (TextView) convertView.findViewById(R.id.textViewDataPubblicazione);
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.list_image);
 
         Post p = getItem(position);
         autore.setText(p.getAutore());
         contenuto.setText(p.getContenuto());
         data.setText(p.getDataPubblicazione().toString());
-       // imageLoader.displayImage(p.getAutore_img(), imageView);
+        String url = p.getAutore_img();
+        if (url != "images/user.png") {
+            ImageLoader imageLoader = ImageLoader.getInstance();
+            imageLoader.displayImage(url, imageView);
+
+        }
 
 
         return convertView;

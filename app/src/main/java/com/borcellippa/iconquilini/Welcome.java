@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.borcellippa.resources.utente.Utente;
+import com.borcellippa.utility.GlobalClass;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -41,15 +42,20 @@ public class Welcome extends Activity {
 
         System.out.println("IN WELCOME");
 
-        u = (Utente) getIntent().getSerializableExtra("utente");
+        final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
+
+        u = globalVariable.getUtente();
 
         TextView benvenuto = (TextView) findViewById(R.id.benvenuto);
         benvenuto.setText(benvenuto.getText() + " " + u.getNome());
 
+
+
+
+
+
         AsyncHttpClient client = new AsyncHttpClient();
         Log.d(TAG, "invokeWS");
-        //client.get("http://"+ ip + ":8080/I_coinquilini-war/webresources/Utente/testGet",params ,new AsyncHttpResponseHandler() {
-        //client.post("http://" + ip + ":8080/I_coinquilini-war/webresources/Utente/validaLogin", params, new AsyncHttpResponseHandler() {
         RequestParams params = new RequestParams();
         params.add("citta", u.getCasa().getCitta());
         client.post("http://molten-ruler-747.appspot.com", params, new AsyncHttpResponseHandler() {
@@ -143,7 +149,7 @@ public class Welcome extends Activity {
 
                         // testo
                         TextView textview = (TextView) findViewById(R.id.meteoTextView);
-                        textview.setText(tempObj.getString("description"));
+                        textview.setText(tempObj.getString("description").toUpperCase());
                     }
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
@@ -180,8 +186,6 @@ public class Welcome extends Activity {
 
         Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
         homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        homeIntent.putExtra("utente", u);
-        System.out.println(u);
         startActivity(homeIntent);
     }
 }

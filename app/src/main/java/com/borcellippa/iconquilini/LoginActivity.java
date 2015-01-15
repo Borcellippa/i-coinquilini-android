@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.borcellippa.resources.casa.casa.Casa;
 import com.borcellippa.resources.utente.Utente;
+import com.borcellippa.utility.GlobalClass;
 import com.borcellippa.utility.Utility;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -40,7 +41,7 @@ public class LoginActivity extends Activity {
     // Error Msg TextView Object
     TextView errorMsg;
     // Email Edit View Object
-    EditText emailET;
+    static EditText emailET;
     // Passwprd Edit View Object
     EditText pwdET;
     // IP Edit View Object
@@ -69,7 +70,6 @@ public class LoginActivity extends Activity {
 
         // Find Error Msg Text View control by ID
         errorMsg = (TextView) findViewById(R.id.login_error);
-
 
         // Find Email Edit View control by ID
         emailET = (EditText) findViewById(R.id.loginEmail);
@@ -136,7 +136,6 @@ public class LoginActivity extends Activity {
         else {
             Toast.makeText(getApplicationContext(), "Please fill the form, don't leave any field blank", Toast.LENGTH_LONG).show();
         }
-
     }
 
     /**
@@ -150,7 +149,6 @@ public class LoginActivity extends Activity {
         // Make RESTful webservice call using AsyncHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
         Log.d(TAG, "invokeWS");
-        //client.get("http://"+ ip + ":8080/I_coinquilini-war/webresources/Utente/testGet",params ,new AsyncHttpResponseHandler() {
         client.post("http://" + ip + ":8080/I_coinquilini-war/webresources/Utente/validaLogin", params, new AsyncHttpResponseHandler() {
 
             // When the response returned by REST has Http response code '200'
@@ -184,7 +182,6 @@ public class LoginActivity extends Activity {
                     *   Gestire errore login
                     *
                     * */
-
 
                     if (u != null) {
                         Toast.makeText(getApplicationContext(), "You are successfully logged in!", Toast.LENGTH_LONG).show();
@@ -247,7 +244,11 @@ public class LoginActivity extends Activity {
     public void navigatetoWelcomeActivity(Utente utente) {
         Intent homeIntent = new Intent(getApplicationContext(), Welcome.class);
         homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        homeIntent.putExtra("utente", utente);
+        GlobalClass globalVariable = (GlobalClass) getApplicationContext();
+
+        globalVariable.setIp(ipET.toString());
+        globalVariable.setUtente(utente);
+
         startActivity(homeIntent);
     }
 
